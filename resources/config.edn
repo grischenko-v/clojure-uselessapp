@@ -1,7 +1,6 @@
 {:http
- {:port #or [#env PORT 3000]}
- :weatherapi
- {:access_key #or [#env WEATHER_API_KEY "bb49a33204ada91f900305b0e53b1886"]}
+ {:port #or [#env PORT 3000]} 
+ :weather_access_key #or [#env WEATHER_API_KEY "bb49a33204ada91fs900305b0e53b1886"]
  :db
  {:dbtype #or [#env DB_TYPE "postgresql"]
   :host #or [#env DB_HOST "127.0.0.1"]

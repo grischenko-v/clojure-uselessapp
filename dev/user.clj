@@ -22,7 +22,9 @@
   (stop)
   (tn/refresh :after 'user/start))
 
+(comment
 (let [ds (jdbc/get-datasource (:db (config/read-config!)))]
   (get-events ds))
+)
 
 

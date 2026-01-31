@@ -8,7 +8,7 @@
 (def ConfigSchema
   [:map
    [:http [:map [:port [:int {:min 1 :max 65535}]]]]
-   [:weather_access_key [:map [:string ]]]
+   [:weather_access_key [:string ]]
    [:db   [:map 
            [:dbtype string?]
            [:host string?]
@@ -34,4 +34,3 @@
 
 (System/getenv "DB_URL")
 
-(read-config!)

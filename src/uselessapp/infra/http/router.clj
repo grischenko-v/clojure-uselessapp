@@ -10,6 +10,7 @@
     ["/hello" (handler/hello-default ds)]
     ["/hello/:name" handler/hello]
     ["/factorial/:number" handler/factorial]
+    ["/fibonachi/:number" handler/fibonachi]
     ["/weather/:location" handler/weather]
     ]))
 

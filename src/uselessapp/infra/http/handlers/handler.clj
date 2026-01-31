@@ -8,6 +8,7 @@
    [uselessapp.infra.http.views.main :as mainpage]
    [uselessapp.infra.kafka.producer :as producer]
    [uselessapp.usecase.factorial :as factorial]
+   [uselessapp.usecase.fibonachi :as fibonachi]
    [uselessapp.usecase.greeting :as greetingusecase]))
 
 (defn home [_]
@@ -38,11 +39,19 @@
      (resp/response html)
      (resp/content-type "text/html; charset=UTF-8"))))
 
-(defn factorial [{:keys [path-params]}]
+(defn mathoperation [{:keys [path-params operation]}]
   (let [number (:number path-params)
-        factorial-value (factorial/factorial (Integer/parseInt number))]
-    (-> (resp/response (str factorial-value))
-        (resp/content-type "text/plain; charset=UTF-8"))))
+         operation-result (operation (Integer/parseInt number))]
+     (-> (resp/response (str operation-result))
+         (resp/content-type "text/plain; charset=UTF-8"))))
+
+(defn factorial [{:keys [path-params]}]
+  (mathoperation {:path-params path-params
+                  :operation factorial/factorial}))
+
+(defn fibonachi [{:keys [path-params]}]
+  (mathoperation {:path-params path-params
+                  :operation fibonachi/fibonachi}))
 
 (defn weather [{:keys [path-params]}]
   (let [location (:location path-params)]
