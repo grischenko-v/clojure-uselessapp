@@ -5,5 +5,5 @@
 /.cpcache
 /.lsp
 /.calva
-/.cljkondo
+/.clj-kondo
 .nrepl-port
