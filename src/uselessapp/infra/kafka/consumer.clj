@@ -1,26 +1,8 @@
-(ns uselessapp.infra.kafka.consumer
-    (:require
-     [cheshire.core :as json]
-     [uselessapp.infra.db.events :as db])
-  
+(ns uselessapp.infra.kafka.consumer 
   (:import
    (java.time Duration)
    (java.util Collections Properties)
    (org.apache.kafka.clients.consumer KafkaConsumer)))
-
-(defn insert-event-handler
-  [ds]
-  (fn [{:keys [value] :as msg}]
-    (println "Consumed msg:" (select-keys msg [:topic :partition :offset :key]) "value=" value)
-    (let [payload (try
-                    (json/parse-string (str value) true) ; keywords
-                    (catch Exception _
-                      {:event (str value)}))
-          ;; поддержим разные формы payload
-          event   (or (:event payload) (:message payload) (:value payload))
-          name    (:name payload)]
-      (db/insert-event! ds {:event event :name name}))))
-
 
 (defn make-consumer
   ^KafkaConsumer
