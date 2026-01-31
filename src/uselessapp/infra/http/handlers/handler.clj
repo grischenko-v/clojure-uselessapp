@@ -30,13 +30,21 @@
           (resp/content-type "text/html; charset=UTF-8")))))
 
 (defn hello [{:keys [path-params]}]
-  (let [name (:name path-params) 
+  (let [name (:name path-params)
         html (hellopage/page {:name name})]
     (future
-      (producer/send-json! @producer/p "events" name (greetingusecase/greet name)))
-    (->
-     (resp/response html)
-     (resp/content-type "text/html; charset=UTF-8"))))
+      (try
+        (producer/send-json!
+         @producer/p
+         "events"
+         name
+         (greetingusecase/greet name))
+        (catch Exception e
+          (println "Ошибка при отправке события")
+          (.printStackTrace e))))
+  (->
+   (resp/response html)
+   (resp/content-type "text/html; charset=UTF-8"))))
 
 (defn mathoperation [{:keys [path-params operation]}]
   (let [number (:number path-params)
