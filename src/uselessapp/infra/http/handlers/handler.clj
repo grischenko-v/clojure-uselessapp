@@ -9,6 +9,7 @@
    [uselessapp.infra.kafka.producer :as producer]
    [uselessapp.usecase.factorial :as factorial]
    [uselessapp.usecase.fibonachi :as fibonachi]
+   [uselessapp.usecase.transformweatherdata :as transformweatherdata]
    [uselessapp.usecase.greeting :as greetingusecase]))
 
 (defn home [_]
@@ -62,7 +63,7 @@
 
 (defn weather [{:keys [path-params]}]
   (let [location (:location path-params) weather-data (get-weather location)] 
-      (-> (resp/response (str "Weather for " location " is " weather-data)) 
+      (-> (resp/response (transformweatherdata/transform location (:data weather-data))) 
           (resp/content-type "text/plain; charset=UTF-8"))
       ))
 

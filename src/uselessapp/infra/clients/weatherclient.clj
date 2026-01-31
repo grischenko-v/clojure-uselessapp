@@ -5,7 +5,7 @@
 
 (defn- fetch-weather-from-api [location]
   (let [cfg (read-config!)
-        api-key (get-in cfg [:weatherapi :access_key])]
+        api-key (get-in cfg [:weather_access_key])]
     (let [resp (http/get "http://api.weatherstack.com/current"
                          {:query-params {:access_key api-key
                                          :query location}
