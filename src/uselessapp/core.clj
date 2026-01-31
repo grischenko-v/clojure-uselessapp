@@ -11,16 +11,12 @@
     (system/start! cfg)))
 
 
-(comment 
+(comment
   (system/stop! {:http nil})
 
-  (let [cfg (config/read-config!)]
-  (let [ds (jdbc/get-datasource (:db cfg))]
-  (get-events ds) 
-    ))
-   (let [cfg (config/read-config!)]
-    (let [ds (jdbc/get-datasource (:db cfg))]
-      (truncate-events! ds)
-      ))
+  (let [cfg (config/read-config!) ds (jdbc/get-datasource (:db cfg))]
+    (get-events ds))
+  (let [cfg (config/read-config!) ds (jdbc/get-datasource (:db cfg))]
+    (truncate-events! ds))
   )
 

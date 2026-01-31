@@ -1,7 +1,6 @@
 (ns uselessapp.infra.kafka.producer
   (:require [cheshire.core :as json])
-  (:import (org.apache.kafka.clients.producer KafkaProducer ProducerRecord Callback)
-           (org.apache.kafka.common.serialization StringSerializer)
+  (:import (org.apache.kafka.clients.producer KafkaProducer ProducerRecord Callback) 
            (java.util Properties)))
 
 (defn make-producer ^KafkaProducer [{:keys [bootstrap]}]

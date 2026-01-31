@@ -16,9 +16,3 @@
   (let [data (fetch-weather-from-api location)]
     {:location location
      :data data}))
-
-(comment 
-  
-   (let [cfg (read-config!)])
-  (fetch-weather-from-api "New York")
-  )

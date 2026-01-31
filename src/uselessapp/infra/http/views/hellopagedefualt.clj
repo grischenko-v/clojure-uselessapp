@@ -1,6 +1,5 @@
 (ns uselessapp.infra.http.views.hellopagedefualt
-  (:require [hiccup.page :as page]
-            [hiccup.element :as el]))
+  (:require [hiccup.page :as page]))
 
 (defn page [{:keys [title events]}]
   (page/html5

@@ -29,9 +29,8 @@
       (-> (resp/response html)
           (resp/content-type "text/html; charset=UTF-8")))))
 
-(defn hello [{:keys [path-params query-params]}]
-  (let [name (:name path-params)
-        title (get query-params "title" "")
+(defn hello [{:keys [path-params]}]
+  (let [name (:name path-params) 
         html (hellopage/page {:name name})]
     (future
       (producer/send-json! @producer/p "events" name (greetingusecase/greet name)))
@@ -54,9 +53,8 @@
                   :operation fibonachi/fibonachi}))
 
 (defn weather [{:keys [path-params]}]
-  (let [location (:location path-params)]
-    (let [weather-data (get-weather location)] 
+  (let [location (:location path-params) weather-data (get-weather location)] 
       (-> (resp/response (str "Weather for " location " is " weather-data)) 
           (resp/content-type "text/plain; charset=UTF-8"))
-      )))
+      ))
 
