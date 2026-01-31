@@ -1,0 +1,1 @@
+alter table events add column if not exists name varchar(200);

@@ -1,0 +1,15 @@
+{:http
+ {:port #or [#env PORT 3000]}
+ :weatherapi
+ {:access_key #or [#env WEATHER_API_KEY "bb49a33204ada91f900305b0e53b1886"]}
+ :db
+ {:dbtype #or [#env DB_TYPE "postgresql"]
+  :host #or [#env DB_HOST "127.0.0.1"]
+  :dbname #or [#env DB_NAME "db"]
+  :user     #or [#env DB_USER "test"]
+  :password     #or [#env DB_PASS "test"]}
+
+ :kafka
+ {:bootstrap #or [#env KAFKA_BOOTSTRAP "localhost:9092"]
+  :topic     #or [#env KAFKA_TOPIC "events"]}}
+

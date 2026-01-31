@@ -1,0 +1,7 @@
+{:store         :database
+ :migration-dir "migrations"
+ :db            {:dbtype "postgresql"
+                 :host "localhost"
+                 :dbname "db"
+                 :user "test"
+                 :password "test"}}
